@@ -8,8 +8,8 @@
     "start": "NODE_ENV=prod node src/server.js",
     "start:dev": "NODE_ENV=dev yarn nodemon src/server.js",
     "start:test": "NODE_ENV=test yarn nodemon src/server.js",
-    "test": "NODE_ENV=test yarn jest",
-    "test:watch": "NODE_ENV=test yarn jest --watch",
+    "test": "NODE_ENV=test yarn jest -i",
+    "test:watch": "NODE_ENV=test yarn jest -i --watch",
     "deploy": "git push heroku main"
   },
   "devDependencies": {
@@ -20,6 +20,7 @@
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
     "faker": "^5.5.3",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
