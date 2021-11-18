@@ -16,6 +16,7 @@
             {
                 "js": "ignorePackages"
             }
-        ]
+        ],
+        "class-methods-use-this": "off"
     }
 }
