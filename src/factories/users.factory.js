@@ -5,27 +5,37 @@ const fakeUserSignUp = {
   id: faker.datatype.number(),
   name: faker.name.findName(),
   email: faker.internet.email(),
-  password: faker.internet.password(),
+  password: faker.internet.password()
 };
 
 const invalidFakeUserSignUp = {
-  name: faker.name.findName(),
+  name: faker.name.findName()
 };
 
 const fakeUserSignIn = {
   email: fakeUserSignUp.email,
-  password: fakeUserSignUp.password,
+  password: fakeUserSignUp.password
 };
 
 const wrongFakeUserSignIn = {
   email: faker.internet.email(),
-  password: 'senha errada',
+  password: 'senha errada'
 };
 
 const invalidFakeUserSignIn = {
-  email: fakeUserSignUp.email,
+  email: fakeUserSignUp.email
 };
 
+const createUser = async () =>
+  connection.query(
+    'INSERT INTO users (id, name, email, password) VALUES ($1, $2, $3, $4);',
+    [
+      fakeUserSignUp.id,
+      fakeUserSignUp.name,
+      fakeUserSignUp.email,
+      fakeUserSignUp.password
+    ]
+  );
 const deleteUsers = async () => connection.query('DELETE FROM users;');
 const deleteSessions = async () => connection.query('DELETE FROM sessions;');
 
@@ -35,6 +45,7 @@ export {
   fakeUserSignIn,
   wrongFakeUserSignIn,
   invalidFakeUserSignIn,
+  createUser,
   deleteUsers,
-  deleteSessions,
+  deleteSessions
 };

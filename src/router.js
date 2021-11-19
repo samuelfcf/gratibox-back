@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import userRouter from './routes/user.routes.js';
+import subscriptionRouter from './routes/subscription.routes.js';
 
 const router = Router();
 
@@ -10,5 +11,6 @@ router.get('/', async (req, res) => {
 });
 
 router.use('/', userRouter);
+router.use('/sub', subscriptionRouter);
 
 export default router;
