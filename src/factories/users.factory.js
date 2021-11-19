@@ -18,8 +18,8 @@ const fakeUserSignIn = {
 };
 
 const wrongFakeUserSignIn = {
-  email: faker.internet.password(),
-  password: faker.internet.email(),
+  email: faker.internet.email(),
+  password: 'senha errada',
 };
 
 const invalidFakeUserSignIn = {

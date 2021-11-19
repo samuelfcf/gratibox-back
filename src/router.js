@@ -9,6 +9,6 @@ router.get('/', async (req, res) => {
   });
 });
 
-router.use('/sign-up', userRouter);
+router.use('/', userRouter);
 
 export default router;
