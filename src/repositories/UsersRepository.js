@@ -4,17 +4,24 @@ class UserRepository {
   async createUser({ name, email, password }) {
     await connection.query(
       'INSERT INTO users (name, email, password) VALUES ($1, $2, $3);',
-      [name, email, password],
+      [name, email, password]
     );
   }
 
   async checkUserExists({ email }) {
     const result = await connection.query(
       'SELECT * FROM users WHERE email = $1;',
-      [email],
+      [email]
     );
     const userExists = result.rows[0];
     return userExists;
+  }
+
+  async createUserSession({ user_id, token }) {
+    const result = await connection.query(
+      'INSERT INTO sessions (user_id, token) VALUES ($1, $2);',
+      [user_id, token]
+    );
   }
 }
 
