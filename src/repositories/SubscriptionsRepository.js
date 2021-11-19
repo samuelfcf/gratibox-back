@@ -12,6 +12,10 @@ class SubscriptionsRepository {
       'INSERT INTO subscribes (user_id, plan, delivery_day, delivery_cep, delivery_number) VALUES ($1, $2, $3, $4, $5);',
       [userId, planId, deliveryDay, deliveryCEP, deliveryNumber]
     );
+    await connection.query(
+      'UPDATE users SET is_subscriber = true WHERE id = $1;',
+      [userId]
+    );
   }
 
   async checkSubscriptionExistsByUserId({ userId }) {
