@@ -21,7 +21,7 @@ class AuthUserService {
     await userRepository.createUserSession({ userId: id, token });
 
     return {
-      userExists,
+      user: userExists,
       token,
     };
   }

@@ -18,9 +18,8 @@ class AuthUserController {
         password,
       });
 
-      return res.status(200).send({
-        token: session.token,
-      });
+      delete session.user.password;
+      return res.status(200).send(session);
     } catch (err) {
       if (err.message.includes('credentials')) {
         return res.status(401).send({
