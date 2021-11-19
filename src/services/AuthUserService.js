@@ -18,7 +18,7 @@ class AuthUserService {
 
     const token = uuid();
     const { id } = userExists;
-    await userRepository.createUserSession({ user_id: id, token });
+    await userRepository.createUserSession({ userId: id, token });
 
     return {
       userExists,

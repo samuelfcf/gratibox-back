@@ -17,6 +17,14 @@
                 "js": "ignorePackages"
             }
         ],
-        "class-methods-use-this": "off"
+        "class-methods-use-this": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true,
+                "optionalDependencies": true,
+                "peerDependencies": true
+            }
+        ]
     }
 }
