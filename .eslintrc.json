@@ -25,6 +25,12 @@
                 "optionalDependencies": true,
                 "peerDependencies": true
             }
+        ],
+        "comma-dangle": [
+            "error",
+            {
+                "arrays": "never",
+            }
         ]
     }
 }

@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/', async (req, res) => {
   res.status(200).send({
-    message: 'Welcome to Gratibox API!',
+    message: 'Welcome to Gratibox API!'
   });
 });
 
