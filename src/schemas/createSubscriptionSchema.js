@@ -10,7 +10,7 @@ const createSubscriptionSchema = joi.object({
     .pattern(/^(0|[1-9][0-9]*)$/)
     .required(),
   deliveryNumber: joi.string().min(1).required(),
-  productsIds: joi.array()
+  productsIds: joi.string().min(1).required()
 });
 
 export default createSubscriptionSchema;

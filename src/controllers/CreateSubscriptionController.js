@@ -8,21 +8,22 @@ class CreateSubscriptionController {
       req.body;
 
     try {
-      const productsIdsArray = JSON.parse(productsIds);
       const { error } = createSubscriptionSchema.validate({
         userId,
         planId,
         deliveryDay,
         deliveryCEP,
         deliveryNumber,
-        productsIds: productsIdsArray
+        productsIds
       });
 
       if (error) {
+        console.error(error);
         return res.sendStatus(400);
       }
 
       const createSubscriptionService = new CreateSubscriptionService();
+      const productsIdsArray = JSON.parse(productsIds);
       await createSubscriptionService.execute({
         userId,
         planId,
