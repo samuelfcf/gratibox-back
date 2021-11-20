@@ -4,15 +4,18 @@ import CreateSubscriptionService from '../services/CreateSubscriptionService.js'
 class CreateSubscriptionController {
   async handle(req, res) {
     const { userId } = req.params;
-    const { planId, deliveryDay, deliveryCEP, deliveryNumber } = req.body;
+    const { planId, deliveryDay, deliveryCEP, deliveryNumber, productsIds } =
+      req.body;
 
     try {
+      const productsIdsArray = JSON.parse(productsIds);
       const { error } = createSubscriptionSchema.validate({
         userId,
         planId,
         deliveryDay,
         deliveryCEP,
-        deliveryNumber
+        deliveryNumber,
+        productsIds: productsIdsArray
       });
 
       if (error) {
@@ -25,7 +28,8 @@ class CreateSubscriptionController {
         planId,
         deliveryDay,
         deliveryCEP,
-        deliveryNumber
+        deliveryNumber,
+        productsIds: productsIdsArray
       });
 
       return res.sendStatus(201);

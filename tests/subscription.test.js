@@ -12,7 +12,9 @@ import {
 } from '../src/factories/users.factory.js';
 
 afterAll(async () => {
+  await F.deleteSubscribeProducts();
   await F.deleteSubscriptions();
+  await F.deleteProducts();
   await F.deletePlans();
   await deleteSessions();
   await deleteUsers();
@@ -23,6 +25,7 @@ describe('POST /sub/:userId', () => {
   beforeAll(async () => {
     await createUser();
     await createSession();
+    await F.createFakeProducts();
     await F.createFakePlan();
   });
 
@@ -37,7 +40,7 @@ describe('POST /sub/:userId', () => {
   test('returns 400 for invalid body', async () => {
     const result = await supertest(app)
       .post(`/sub/${fakeUserSignUp.id}`)
-      .send({})
+      .send(F.wrongFakeSubscription)
       .set('Authorization', fakeSession.token);
     expect(result.status).toEqual(400);
   });
