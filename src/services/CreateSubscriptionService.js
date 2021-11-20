@@ -1,7 +1,14 @@
 import SubscriptionsRepository from '../repositories/SubscriptionsRepository.js';
 
 class CreateSubscriptionService {
-  async execute({ userId, planId, deliveryDay, deliveryCEP, deliveryNumber }) {
+  async execute({
+    userId,
+    planId,
+    deliveryDay,
+    deliveryCEP,
+    deliveryNumber,
+    productsIds
+  }) {
     const subscriptionRepository = new SubscriptionsRepository();
 
     const subscriptionExists =
@@ -17,6 +24,11 @@ class CreateSubscriptionService {
       deliveryDay,
       deliveryCEP,
       deliveryNumber
+    });
+
+    await subscriptionRepository.addProductsToUserSubscription({
+      subscriptionId: subscription.id,
+      productsIds
     });
 
     return subscription;
