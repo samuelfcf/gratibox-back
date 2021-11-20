@@ -5,12 +5,16 @@ import * as F from '../src/factories/subscribe.factory.js';
 import {
   deleteUsers,
   fakeUserSignUp,
-  createUser
+  fakeSession,
+  createUser,
+  createSession,
+  deleteSessions
 } from '../src/factories/users.factory.js';
 
 afterAll(async () => {
   await F.deleteSubscriptions();
   await F.deletePlans();
+  await deleteSessions();
   await deleteUsers();
   connection.end();
 });
@@ -18,27 +22,38 @@ afterAll(async () => {
 describe('POST /sub/:userId', () => {
   beforeAll(async () => {
     await createUser();
+    await createSession();
     await F.createFakePlan();
   });
 
   test('returns 201 for subscribe succesfull', async () => {
     const result = await supertest(app)
       .post(`/sub/${fakeUserSignUp.id}`)
-      .send(F.fakeSubscription);
+      .send(F.fakeSubscription)
+      .set('Authorization', fakeSession.token);
     expect(result.status).toEqual(201);
   });
 
   test('returns 400 for invalid body', async () => {
     const result = await supertest(app)
       .post(`/sub/${fakeUserSignUp.id}`)
-      .send({});
+      .send({})
+      .set('Authorization', fakeSession.token);
     expect(result.status).toEqual(400);
   });
 
   test('returns 409 for subscription already exists', async () => {
     const result = await supertest(app)
       .post(`/sub/${fakeUserSignUp.id}`)
-      .send(F.fakeSubscription);
+      .send(F.fakeSubscription)
+      .set('Authorization', fakeSession.token);
     expect(result.status).toEqual(409);
+  });
+
+  test('returns 401 for user not authorized', async () => {
+    const result = await supertest(app)
+      .post(`/sub/${fakeUserSignUp.id}`)
+      .send(F.fakeSubscription);
+    expect(result.status).toEqual(401);
   });
 });

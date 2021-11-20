@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import ensureAuth from './middlewares/ensureAuth.js';
 import userRouter from './routes/user.routes.js';
 import subscriptionRouter from './routes/subscription.routes.js';
 
@@ -11,6 +12,6 @@ router.get('/', async (req, res) => {
 });
 
 router.use('/', userRouter);
-router.use('/sub', subscriptionRouter);
+router.use('/sub', ensureAuth, subscriptionRouter);
 
 export default router;
