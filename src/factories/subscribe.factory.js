@@ -11,7 +11,7 @@ const fakeSubscription = {
   planId: fakePlan.id,
   deliveryDay: faker.datatype.string(),
   deliveryCEP: '12345678',
-  deliveryNumber: faker.datatype.number()
+  deliveryNumber: faker.datatype.string()
 };
 
 const createFakePlan = async () =>
