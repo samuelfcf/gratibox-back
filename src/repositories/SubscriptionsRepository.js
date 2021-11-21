@@ -40,6 +40,26 @@ class SubscriptionsRepository {
       );
     });
   }
+
+  async getSubscribeInfos({ userId }) {
+    const result = await connection.query(
+      `
+      SELECT 
+      subscribes.*,
+      products.name
+      FROM subscribes
+        JOIN subscribes_products
+          ON subscribes_products.subscribe_id = subscribes.id
+        JOIN products
+          ON products.id = subscribes_products.product_id
+      WHERE subscribes.user_id = $1;
+    `,
+      [userId]
+    );
+
+    const subscriptionInfo = result.rows;
+    return subscriptionInfo;
+  }
 }
 
 export default SubscriptionsRepository;
