@@ -2,7 +2,7 @@
 
 ## 🔖 Sobre
 
-API de um serviço de assinatura de produtos naturais e artesinais como chás e incensos. Permite cadastro e login de usuários e disponibiliza enpoints para efetuar a assinatura e listar todos os detalhes da mesma. A API foi desenvolvida para alimentar o front-end disponível em: https://github.com/samuelfcf/gratibox-front
+API de um serviço de assinatura de produtos naturais e artesinais como chás e incensos. Permite cadastro e login de usuários e disponibiliza enpoints para efetuar a assinatura e listar todos os detalhes da mesma. A API conta com testes automatizados em todas as rotas e foi desenvolvida para alimentar o front-end disponível em: https://github.com/samuelfcf/gratibox-front
 
 ## 🛠 Tecnologias utilizadas
 
