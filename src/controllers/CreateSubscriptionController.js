@@ -18,7 +18,6 @@ class CreateSubscriptionController {
       });
 
       if (error) {
-        console.error(error);
         return res.sendStatus(400);
       }
 

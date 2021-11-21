@@ -7,12 +7,22 @@ const fakePlan = {
   name: faker.name.findName()
 };
 
-const fakeSubscription = {
+const fakeSubscriptionBody = {
   planId: fakePlan.id,
   deliveryDay: faker.datatype.string(),
   deliveryCEP: '12345678',
   deliveryNumber: faker.datatype.string(),
   productsIds: '[1]'
+};
+
+const fakeSubscription = {
+  id: faker.datatype.number(),
+  userId: fakeUserSignUp.id,
+  planId: fakePlan.id,
+  subscriptionDate: faker.datatype.datetime(),
+  deliveryDay: fakeSubscriptionBody.deliveryDay,
+  deliveryCEP: fakeSubscriptionBody.deliveryCEP,
+  deliveryNumber: '111'
 };
 
 const wrongFakeSubscription = {
@@ -48,27 +58,26 @@ const createFakePlan = async () =>
 
 const createFakeSubscription = async () =>
   connection.query(
-    'INSERT INTO subscribes (user_id, plan, delivery_day, delivery_cep, delivery_number) VALUES ($1, $2, $3, $4, $5, $6);',
+    'INSERT INTO subscribes (id, user_id, plan, delivery_day, delivery_cep, delivery_number) VALUES ($1, $2, $3, $4, $5, $6);',
     [
-      fakeUserSignUp.id,
+      fakeSubscription.id,
+      fakeSubscription.userId,
       fakeSubscription.planId,
       fakeSubscription.deliveryDay,
       fakeSubscription.deliveryCEP,
-      fakeSubscription.deliveryNumber,
-      fakeSubscription.productsIds
+      fakeSubscription.deliveryNumber
     ]
   );
 
 const deleteSubscriptions = async () =>
   connection.query('DELETE FROM subscribes;');
-
 const deletePlans = async () => connection.query('DELETE FROM plans;');
 const deleteProducts = async () => connection.query('DELETE FROM products;');
 const deleteSubscribeProducts = async () =>
   connection.query('DELETE FROM subscribes_products;');
 
 export {
-  fakeSubscription,
+  fakeSubscriptionBody,
   wrongFakeSubscription,
   createFakeSubscribeProducts,
   deleteSubscribeProducts,
