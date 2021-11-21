@@ -46,7 +46,7 @@ class SubscriptionsRepository {
       `
       SELECT 
       subscribes.*,
-      products.name
+      products.name AS product_name
       FROM subscribes
         JOIN subscribes_products
           ON subscribes_products.subscribe_id = subscribes.id
