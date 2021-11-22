@@ -27,7 +27,7 @@ Requisições para a API devem seguir os padrões:
 | `POST` | /sub/:userId | Cria registro de assinatura do cliente. Necessita que o id do usuário seja enviado como parâmetro na rota e que o token da sessão seja enviado no cabeçalho da requisição. | `{ "planId": ,"deliveryDay": ,"deliveryCEP": ,"deliveryNumber": ,"deliveryAddress": , "deliveryRecipient": , "productsIds": }` |
 | `GET` | /sub/:userId | Retorna todos os dados da assinatura do cliente. Necessita que o id do usuário seja enviado como parâmetro na rota e que o token da sessão seja enviado no cabeçalho da requisição. | |
 
-## 📦 Como baixar o projeto e executar
+## 📦 Como baixar e executar o projeto 
 
 ```bash
 
