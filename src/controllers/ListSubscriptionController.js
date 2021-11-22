@@ -3,7 +3,6 @@ import ListSubscriptionService from '../services/ListSubscriptionService.js';
 class ListSubscriptionController {
   async handle(req, res) {
     const { userId } = req.params;
-
     try {
       const listSubscriptionService = new ListSubscriptionService();
       const subscriptionInfo = await listSubscriptionService.execute({
