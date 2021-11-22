@@ -2,7 +2,7 @@
 
 ## 🔖 Sobre
 
-API de um serviço de assinatura de produtos naturais e artesinais como chás e incensos. Permite cadastro e login de usuários e disponibiliza enpoints para efetuar a assinatura e listar todos os detalhes da mesma. A API conta com testes automatizados em todas as rotas e foi desenvolvida para alimentar o front-end disponível em: https://github.com/samuelfcf/gratibox-front
+API de serviço de assinatura de produtos naturais e artesinais como chás e incensos e produtos orgânicos em geral. Permite cadastro e login de usuários e disponibiliza enpoints para efetuar a assinatura e listar todos os detalhes da mesma. A API conta com testes automatizados em todas as rotas e utiliza alguns conceitos de Design Patterns como repositories, services e controllers. Esse projeto foi desenvolvido para alimentar o front-end disponível em: https://github.com/samuelfcf/gratibox-front
 
 ## 🛠 Tecnologias utilizadas
 
@@ -17,7 +17,17 @@ O projeto foi desenvolvido usando as seguintes tecnologias:
 - [Supertest](https://www.npmjs.com/package/supertest)
 - [PostgreSQL](https://www.postgresql.org/)
 
-## 📦 Como baixar o projeto
+## 🛣️ Rotas
+
+Requisições para a API devem seguir os padrões:
+| Método | Caminho | Descrição | Corpo da requisição
+|---|---|---|---|
+| `POST` | /sing-up | Cadastro de usuários | `{ name: , email: , password: }` |
+| `POST` | /sign-in | Faz login no sistema | `{ email: , password: }` |
+| `POST` | /sub/:userId | Cria registro de assinatura do cliente. Necessita que o id do usuário seja enviado como parâmetro na rota e que o token da sessão seja enviado no cabeçalho da requisição. | `{ "planId": ,"deliveryDay": ,"deliveryCEP": ,"deliveryNumber": ,"deliveryAddress": , "deliveryRecipient": , "productsIds": }` |
+| `GET` | /sub/:userId | Retorna todos os dados da assinatura do cliente. Necessita que o id do usuário seja enviado como parâmetro na rota e que o token da sessão seja enviado no cabeçalho da requisição. | |
+
+## 📦 Como baixar o projeto e executar
 
 ```bash
 
@@ -36,4 +46,4 @@ O projeto foi desenvolvido usando as seguintes tecnologias:
 
 ---
 
-Desenvolvido por Samuel Felipe Castro Fernandes
+Desenvolvido com ❤️ por Samuel Felipe Castro Fernandes.
