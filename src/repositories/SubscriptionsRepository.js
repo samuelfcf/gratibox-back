@@ -6,11 +6,21 @@ class SubscriptionsRepository {
     planId,
     deliveryDay,
     deliveryCEP,
-    deliveryNumber
+    deliveryNumber,
+    deliveryAddress,
+    deliveryRecipient
   }) {
     await connection.query(
-      'INSERT INTO subscribes (user_id, plan, delivery_day, delivery_cep, delivery_number) VALUES ($1, $2, $3, $4, $5);',
-      [userId, planId, deliveryDay, deliveryCEP, deliveryNumber]
+      'INSERT INTO subscribes (user_id, plan, delivery_day, delivery_cep, delivery_number, delivery_address, delivery_recipient) VALUES ($1, $2, $3, $4, $5, $6, $7);',
+      [
+        userId,
+        planId,
+        deliveryDay,
+        deliveryCEP,
+        deliveryNumber,
+        deliveryAddress,
+        deliveryRecipient
+      ]
     );
     const result = await connection.query(
       'SELECT * FROM subscribes WHERE user_id = $1;',

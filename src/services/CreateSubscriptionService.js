@@ -7,6 +7,8 @@ class CreateSubscriptionService {
     deliveryDay,
     deliveryCEP,
     deliveryNumber,
+    deliveryAddress,
+    deliveryRecipient,
     productsIds
   }) {
     const subscriptionRepository = new SubscriptionsRepository();
@@ -23,7 +25,9 @@ class CreateSubscriptionService {
       planId,
       deliveryDay,
       deliveryCEP,
-      deliveryNumber
+      deliveryNumber,
+      deliveryAddress,
+      deliveryRecipient
     });
 
     await subscriptionRepository.addProductsToUserSubscription({

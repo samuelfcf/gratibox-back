@@ -10,6 +10,8 @@ const createSubscriptionSchema = joi.object({
     .pattern(/^(0|[1-9][0-9]*)$/)
     .required(),
   deliveryNumber: joi.string().min(1).required(),
+  deliveryAddress: joi.string().min(1).required(),
+  deliveryRecipient: joi.string().min(1).required(),
   productsIds: joi.string().min(1).required()
 });
 
