@@ -12,6 +12,8 @@ const fakeSubscriptionBody = {
   deliveryDay: faker.datatype.string(),
   deliveryCEP: '12345678',
   deliveryNumber: faker.datatype.string(),
+  deliveryAddress: faker.datatype.string(),
+  deliveryRecipient: faker.datatype.string(),
   productsIds: '[1]'
 };
 
@@ -22,7 +24,9 @@ const fakeSubscription = {
   subscriptionDate: faker.datatype.datetime(),
   deliveryDay: fakeSubscriptionBody.deliveryDay,
   deliveryCEP: fakeSubscriptionBody.deliveryCEP,
-  deliveryNumber: '111'
+  deliveryNumber: fakeSubscriptionBody.deliveryNumber,
+  deliveryAddress: fakeSubscriptionBody.deliveryAddress,
+  deliveryRecipient: fakeSubscriptionBody.deliveryRecipient
 };
 
 const wrongFakeSubscription = {
@@ -58,14 +62,16 @@ const createFakePlan = async () =>
 
 const createFakeSubscription = async () =>
   connection.query(
-    'INSERT INTO subscribes (id, user_id, plan, delivery_day, delivery_cep, delivery_number) VALUES ($1, $2, $3, $4, $5, $6);',
+    'INSERT INTO subscribes (id, user_id, plan, delivery_day, delivery_cep, delivery_number, delivery_address, delivery_recipient) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);',
     [
       fakeSubscription.id,
       fakeSubscription.userId,
       fakeSubscription.planId,
       fakeSubscription.deliveryDay,
       fakeSubscription.deliveryCEP,
-      fakeSubscription.deliveryNumber
+      fakeSubscription.deliveryNumber,
+      fakeSubscription.deliveryAddress,
+      fakeSubscription.deliveryRecipient
     ]
   );
 
